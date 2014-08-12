@@ -1,29 +1,19 @@
 package model;
 
-import controllers.CareTaker;
-
+import java.util.HashMap;
 
 public class User {
 	private Long id;
 	private String nome;
 	private String endereco;
 	private Integer idade;
-	private CareTaker memento;
-	
-	public CareTaker createMemento(Long size){
-		return this.memento = new CareTaker(this, size);
+		
+	public UserMemento createMemento(){
+		return new UserMemento(this.getState());
 	}
 	
-	public void saveState(){
-		this.memento.save(this);
-	}
-	
-	public User undo(){
-		return this.memento.undo(this);
-	}
-	
-	public User redo(){
-		return this.memento.redo(this);
+	public void setMemento(UserMemento memento){
+		this.setState(memento.getState());
 	}
 	
 	public Long getId(){
@@ -68,6 +58,23 @@ public class User {
 		}
 		
 		return clone;
+	}
+
+	private HashMap<String, Object> getState(){
+		HashMap<String, Object> state = new HashMap<String, Object>();
+		state.put("id", this.id);
+		state.put("nome", this.nome);
+		state.put("endereco", this.endereco);
+		state.put("idade", this.idade);
+		
+		return state;		
+	}
+	
+	private void setState(HashMap<String, Object> state){
+		this.id = (Long) state.get("id");
+		this.nome = (String) state.get("nome");
+		this.endereco = (String) state.get("endereco");
+		this.idade = (Integer) state.get("idade");
 	}
 	
 	public String toString(){
