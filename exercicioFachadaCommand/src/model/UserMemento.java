@@ -10,7 +10,7 @@ public class UserMemento {
 	
 	private HashMap<Long, User> states;
 	
-	public UserMemento(User u, Long maxSize){
+	UserMemento(User u, Long maxSize){
 		this.maxSize = maxSize;
 		this.currentState = 0L;
 		this.oldierState = 0L;
@@ -20,7 +20,7 @@ public class UserMemento {
 		this.states.put(currentState, u.clone());
 	}
 	
-	public User undo(User u){
+	User undo(User u){
 		if(this.currentState.compareTo(this.oldierState) == 0){
 			User oldier = this.states.get(this.currentState);
 			u.setEndereco(oldier.getEndereco());
@@ -41,7 +41,7 @@ public class UserMemento {
 		}
 	}
 	
-	public User redo(User u){
+	User redo(User u){
 		if(this.currentState.compareTo(this.newestState) == 0){
 			return null;
 		}
@@ -57,7 +57,7 @@ public class UserMemento {
 		}
 	}
 	
-	public void save(User u){
+	void save(User u){
 		if(this.maxSize == this.states.size()
 				&& this.currentState.compareTo(this.newestState) == 0){
 			
