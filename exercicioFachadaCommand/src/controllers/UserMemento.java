@@ -1,36 +1,38 @@
 package controllers;
 
-import java.math.BigInteger;
 import java.util.HashMap;
 
 import model.User;
 
 public class UserMemento {
-	private BigInteger oldierState; 
-	private BigInteger currentState;
-	private BigInteger newestState;
+	private Long oldierState; 
+	private Long currentState;
+	private Long newestState;
 	private Long maxSize;
 	
-	private static final BigInteger one = BigInteger.ONE;
-	
-	private HashMap<BigInteger, User> states;
+	private HashMap<Long, User> states;
 	
 	public UserMemento(User u, Long maxSize){
 		this.maxSize = maxSize;
-		this.currentState = new BigInteger("0");
-		this.oldierState = new BigInteger("0");
-		this.newestState = new BigInteger("0");
+		this.currentState = 0L;
+		this.oldierState = 0L;
+		this.newestState = 0L;
 		
-		this.states = new HashMap<BigInteger, User>();
+		this.states = new HashMap<Long, User>();
 		this.states.put(currentState, u.clone());
 	}
 	
 	public User undo(User u){
 		if(this.currentState.compareTo(this.oldierState) == 0){
+			User oldier = this.states.get(this.currentState);
+			u.setEndereco(oldier.getEndereco());
+			u.setIdade(oldier.getIdade());
+			u.setNome(oldier.getNome());
+			
 			return null;
 		}
 		else{
-			this.currentState = this.currentState.subtract(one);
+			this.currentState--;
 			
 			User oldier = this.states.get(this.currentState);
 			u.setEndereco(oldier.getEndereco());
@@ -46,8 +48,8 @@ public class UserMemento {
 			return null;
 		}
 		else{
-			this.currentState = this.currentState.add(one);
-
+			this.currentState++;
+			
 			User oldier = this.states.get(this.currentState);
 			u.setEndereco(oldier.getEndereco());
 			u.setIdade(oldier.getIdade());
@@ -63,29 +65,26 @@ public class UserMemento {
 			
 			this.states.remove(this.oldierState);
 			
-			this.oldierState = this.oldierState.add(one);
-			this.currentState = this.currentState.add(one);
-			this.newestState = this.newestState.add(one);
+			this.oldierState++;
+			this.currentState++;
+			this.newestState++;
 			
 			this.states.put(this.currentState, u.clone());
 		}
 		else{
-			this.currentState = this.currentState.add(one);
-			
+			this.currentState++;
 			this.states.put(this.currentState, u.clone());
 			
-			for(BigInteger i = this.currentState.add(one); i.compareTo(this.newestState) == -1; i = i.add(one)){
+			for(Long i = this.currentState+1; i <= this.newestState; i++){
 				this.states.remove(i);
 			}
-			this.states.remove(this.newestState);
-			
-			this.newestState = this.currentState.add(one).subtract(one);
+			this.newestState = this.currentState;
 		}
 	}
 	
 	public String toString(){
 		String memento =  "";
-		for (BigInteger i : this.states.keySet()) {
+		for (Long i : this.states.keySet()) {
 			memento += "Key: (" + i + ")  |  value: (" + this.states.get(i) + ")\n";
 		}
 		return memento;
