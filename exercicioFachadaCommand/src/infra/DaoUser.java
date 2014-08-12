@@ -19,15 +19,17 @@ public class DaoUser extends DaoMemo<User>{
 		// TODO Auto-generated method stub
 		
 		User u = new User();
+		obj.put("id", myId++);
+		this.setCampos(obj, u);
+		this.bd.put(u.getId(), u);
 		
-		
-		return null;
+		return u;
 	}
 
 	@Override
 	protected HashMap<Long, User> getDB() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.bd;
 	}
 
 }
