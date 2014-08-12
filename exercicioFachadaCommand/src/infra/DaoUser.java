@@ -5,13 +5,21 @@ import java.util.HashMap;
 import model.User;
 
 public class DaoUser extends DaoMemo<User>{
-	private DaoUser dao;
+	private static DaoUser dao;
 	private Long myId;
 	private HashMap<Long,User> bd;
 	
 	private DaoUser(){
 		this.myId = 0L;
 		bd = new HashMap<Long, User>();
+	}
+	
+	public static DaoIF<User> getInstance(){
+		if(DaoUser.dao == null){
+			DaoUser.dao =  new DaoUser();
+		}
+		
+		return DaoUser.dao;
 	}
 	
 	@Override
