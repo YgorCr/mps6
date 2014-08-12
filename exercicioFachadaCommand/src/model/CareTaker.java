@@ -2,7 +2,7 @@ package model;
 
 import java.util.HashMap;
 
-public class UserMemento {
+public class CareTaker {
 	private Long oldierState; 
 	private Long currentState;
 	private Long newestState;
@@ -10,7 +10,7 @@ public class UserMemento {
 	
 	private HashMap<Long, User> states;
 	
-	UserMemento(User u, Long maxSize){
+	CareTaker(User u, Long maxSize){
 		this.maxSize = maxSize;
 		this.currentState = 0L;
 		this.oldierState = 0L;

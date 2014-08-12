@@ -6,10 +6,10 @@ public class User {
 	private String nome;
 	private String endereco;
 	private Integer idade;
-	private UserMemento memento;
+	private CareTaker memento;
 	
-	public UserMemento createMemento(Long size){
-		return this.memento = new UserMemento(this, size);
+	public CareTaker createMemento(Long size){
+		return this.memento = new CareTaker(this, size);
 	}
 	
 	public void saveState(){

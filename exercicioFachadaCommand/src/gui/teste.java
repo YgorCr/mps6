@@ -1,7 +1,7 @@
 package gui;
 
 import model.User;
-import model.UserMemento;
+import model.CareTaker;
 
 public class teste {
 
@@ -12,7 +12,7 @@ public class teste {
 		u.setIdade(0);
 		u.setNome("A");
 		
-		UserMemento uM = u.createMemento(10L); //salvo a instância só pra imprimir os testes
+		CareTaker uM = u.createMemento(10L); //salvo a instância só pra imprimir os testes
 		
 		u.setEndereco("Rua 2, 0");
 		u.saveState();
