@@ -1,5 +1,7 @@
 package model;
 
+import controllers.CareTaker;
+
 
 public class User {
 	private Long id;

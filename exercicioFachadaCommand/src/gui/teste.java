@@ -1,7 +1,7 @@
 package gui;
 
+import controllers.CareTaker;
 import model.User;
-import model.CareTaker;
 
 public class teste {
 

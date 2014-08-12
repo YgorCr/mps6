@@ -1,6 +1,8 @@
-package model;
+package controllers;
 
 import java.util.HashMap;
+
+import model.User;
 
 public class CareTaker {
 	private Long oldierState; 
@@ -10,7 +12,7 @@ public class CareTaker {
 	
 	private HashMap<Long, User> states;
 	
-	CareTaker(User u, Long maxSize){
+	public CareTaker(User u, Long maxSize){
 		this.maxSize = maxSize;
 		this.currentState = 0L;
 		this.oldierState = 0L;
@@ -20,7 +22,7 @@ public class CareTaker {
 		this.states.put(currentState, u.clone());
 	}
 	
-	User undo(User u){
+	public User undo(User u){
 		if(this.currentState.compareTo(this.oldierState) == 0){
 			User oldier = this.states.get(this.currentState);
 			u.setEndereco(oldier.getEndereco());
@@ -41,7 +43,7 @@ public class CareTaker {
 		}
 	}
 	
-	User redo(User u){
+	public User redo(User u){
 		if(this.currentState.compareTo(this.newestState) == 0){
 			return null;
 		}
@@ -57,7 +59,7 @@ public class CareTaker {
 		}
 	}
 	
-	void save(User u){
+	public void save(User u){
 		if(this.maxSize == this.states.size()
 				&& this.currentState.compareTo(this.newestState) == 0){
 			
