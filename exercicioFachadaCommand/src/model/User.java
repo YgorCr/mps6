@@ -31,7 +31,7 @@ public class User {
 	}
 	
 	@Override
-	public Object clone() throws CloneNotSupportedException {
+	public User clone(){
 		User clone = new User();
 		synchronized (this){
 			clone.setEndereco(this.getEndereco());
