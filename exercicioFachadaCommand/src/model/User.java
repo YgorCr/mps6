@@ -49,4 +49,8 @@ public class User {
 		
 		return clone;
 	}
+	
+	public String toString(){
+		return "UserId: " + this.id + "  Nome: " + this.nome + "  Endereço: " + this.endereco + "  Idade: " + this.idade;
+	}
 }

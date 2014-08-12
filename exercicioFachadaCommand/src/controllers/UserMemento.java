@@ -74,12 +74,20 @@ public class UserMemento {
 			
 			this.states.put(this.currentState, u.clone());
 			
-			for(BigInteger i = this.currentState.add(one); i.compareTo(this.newestState) != 0; i = i.add(one)){
+			for(BigInteger i = this.currentState.add(one); i.compareTo(this.newestState) == -1; i = i.add(one)){
 				this.states.remove(i);
 			}
 			this.states.remove(this.newestState);
 			
 			this.newestState = this.currentState.add(one).subtract(one);
 		}
+	}
+	
+	public String toString(){
+		String memento =  "";
+		for (BigInteger i : this.states.keySet()) {
+			memento += "Key: (" + i + ")  |  value: (" + this.states.get(i) + ")\n";
+		}
+		return memento;
 	}
 }
