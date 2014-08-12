@@ -1,9 +1,6 @@
 package controllers;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
-import model.User;
 import model.UserMemento;
 
 public class CareTaker {

@@ -1,6 +1,5 @@
 package gui;
 
-import controllers.CareTaker;
 import model.User;
 
 public class teste {
@@ -11,6 +10,7 @@ public class teste {
 		u.setId(0L);
 		u.setIdade(0);
 		u.setNome("A");
+		
 		
 		System.out.println(u);
 	}
