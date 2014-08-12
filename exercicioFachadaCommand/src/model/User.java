@@ -1,10 +1,28 @@
 package model;
 
+
 public class User {
 	private Long id;
 	private String nome;
 	private String endereco;
 	private Integer idade;
+	private UserMemento memento;
+	
+	public UserMemento createMemento(Long size){
+		return this.memento = new UserMemento(this, size);
+	}
+	
+	public void saveState(){
+		this.memento.save(this);
+	}
+	
+	public User undo(){
+		return this.memento.undo(this);
+	}
+	
+	public User redo(){
+		return this.memento.redo(this);
+	}
 	
 	public Long getId(){
 		return this.id;

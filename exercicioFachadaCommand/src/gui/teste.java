@@ -1,9 +1,7 @@
 package gui;
 
-import java.math.BigInteger;
-
-import controllers.UserMemento;
 import model.User;
+import model.UserMemento;
 
 public class teste {
 
@@ -14,46 +12,46 @@ public class teste {
 		u.setIdade(0);
 		u.setNome("A");
 		
-		UserMemento uM = new UserMemento(u, 10L);
-
+		UserMemento uM = u.createMemento(10L); //salvo a instância só pra imprimir os testes
+		
 		u.setEndereco("Rua 2, 0");
-		uM.save(u);
+		u.saveState();
 		u.setEndereco("Rua 3, 0");
-		uM.save(u);
+		u.saveState();
 		u.setEndereco("Rua 4, 0");
-		uM.save(u);
+		u.saveState();
 		u.setEndereco("Rua 5, 0");
-		uM.save(u);
+		u.saveState();
 		u.setEndereco("Rua 6, 0");
-		uM.save(u);
+		u.saveState();
 		u.setEndereco("Rua 7, 0");
-		uM.save(u);
+		u.saveState();
 		u.setEndereco("Rua 8, 0");
-		uM.save(u);
+		u.saveState();
 		u.setEndereco("Rua 9, 0");
-		uM.save(u);
+		u.saveState();
 		u.setEndereco("Rua 10, 0");
-		uM.save(u);
+		u.saveState();
 		u.setEndereco("Rua 11, 0");
-		uM.save(u);
+		u.saveState();
 		
 		System.out.println(uM.toString());
-
-		uM.undo(u);
-		uM.undo(u);
-		uM.undo(u);
-		uM.undo(u);
-		uM.undo(u);
-		uM.undo(u);
-		uM.undo(u);
-		uM.undo(u);
-		uM.undo(u);
-		uM.undo(u);
-		uM.undo(u);
-		uM.undo(u);
+		
+		u.undo();
+		u.undo();
+		u.undo();
+		u.undo();
+		u.undo();
+		u.undo();
+		u.undo();
+		u.undo();
+		u.undo();
+		u.undo();
+		u.undo();
+		u.undo();
 		
 		u.setNome("aeee");
-		uM.save(u);
+		u.saveState();
 		
 		System.out.println(uM.toString());
 		

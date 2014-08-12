@@ -1,8 +1,6 @@
-package controllers;
+package model;
 
 import java.util.HashMap;
-
-import model.User;
 
 public class UserMemento {
 	private Long oldierState; 
